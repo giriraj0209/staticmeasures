@@ -1,0 +1,114 @@
+<div class="sidebar" id="filters">
+  {{#unless opml}}
+  <span class="panel-title btn btn-checkbox btn-block aggregate-btn {{#if showAggregateResult}}active{{/if}}"> 
+    <i class="fa fa-group"/> &nbsp; SHOW AGGREGATE RESULT 
+  </span>
+  {{/unless}}
+
+  <p class="input-group">
+    <input type="text" class="form-control category-measure-search" placeholder="measure or group title">
+    <span class="input-group-btn"><a class="btn btn-default clear-search" type="button">&times;</a></span>
+  </p>
+
+  <div class="panel-group" id="measureSelectors">
+    {{#collection item-context=categoryFilterContext item-filter=categoryFilter}}
+      <div class="panel panel-default">
+        <div class="toggleable panel-heading" data-toggle="collapse" data-parent="#measureSelectors" data-target="#category{{@cid}}">
+          <h4 class="panel-title">
+            <div class="selection-pull-out">
+              <span class="measure-count">{{measure_count}}</span>
+              <i class="panel-chevron glyphicon glyphicon-chevron-right"></i>
+            </div>
+            {{category}}
+          </h4>
+        </div>
+        <div id="category{{@cid}}" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="btn-block-container">
+              <a href class="btn btn-checkbox btn-block all{{#if selected}} active{{/if}}">Select All</a>
+            </div>
+            {{#collection measures item-context=../measureFilterContext item-filter=../measureFilter}}
+              <div class="btn-block-container">
+                <a href class="btn btn-checkbox btn-block individual{{#if selected}} active{{/if}}">{{cms_id}}&#8203;/&#8203;{{nqf_id}} - {{name}}</a>
+              </div>
+            {{/collection}}
+          </div>
+        </div>
+      </div>
+    {{/collection}}
+  </div>
+</div>
+
+<div class="main">
+  <div class="main-heading">
+    <h1 class="title">Measures</h1>
+    <div class="header-actions pull-right">
+
+      <div class="btn-group btn-group-md" data-toggle="buttons">
+        <label class="btn col-md-6 fa fa-align-left large-icon btn-default{{#unless populationChartScaledToIPP}} active  btn-primary{{/unless}}">
+          <input class="rescale" type="radio" value="false" name="population_chart_scale" {{#unless populationChartScaledToIPP}}checked{{/unless}}/>
+        </label>
+        <label class="btn col-md-6 fa fa-align-justify large-icon btn-default{{#if populationChartScaledToIPP}} active btn-primary{{/if}}">
+          <input class="rescale" type="radio" value="true" name="population_chart_scale" {{#if populationChartScaledToIPP}}checked{{/if}}/>
+        </label>
+      </div>
+      {{#if showMeasureBaselineReport}}
+        <a class="btn btn-primary" href="providers/{{provider_id}}/measure_baseline" class="patient-btn pull-right">
+          <i class="fa fa-pie-chart"></i>
+          Baseline
+        </a>
+      {{/if}}
+      <div class="dropdown dropdown-btn pull-right">
+        <div class="dropdown-toggle pull-right btn btn-primary" data-toggle="dropdown" href="#">
+          <i class="glyphicon glyphicon-download-alt"></i> Export</a>
+        </div>
+        <ul class="dropdown-menu pull-right">
+          <li><a id="cat3link"  class="btn"> QRDA Cat 3 </a></li>
+          <li><a id="cat1link"  class="btn"> QRDA Cat 1 Zip </a></li>
+          <li><a href="/api/reports/measures_spreadsheet/{{#if effective_date}}?effective_date={{effective_date}}{{/if}}{{#if provider_id}}&provider_id={{provider_id}}{{/if}}{{#if currentUser}}&username={{currentUser}}{{/if}}" class="btn"> Spreadsheet </a></li>
+        </ul>
+      </div> 
+      <div><scan id="filterorno"><scan></div>
+    </div>
+  </div>
+  {{#collection selectedCategories item-context=selectedCategoryContext item-filter=categoryFilter}}
+    <h2>{{category}}</h2>
+
+    {{#if proportionBasedMeasures.length}}
+      <div class="category">
+        <div class="category-percent">
+          <div class="title-circle">%</div>
+        </div>
+        <div class="category-fraction">
+          <div class="fraction-listing">
+            <div class="numerator">Numerator</div>
+            <div class="denominator">Denominator</div>
+          </div>
+        </div>
+      </div>
+
+      {{#collection proportionBasedMeasures item-context=measureContext item-filter=../../measureFilter}}
+        {{view submeasureView}}
+      {{/collection}}
+    {{/if}}
+
+    {{#if cvMeasures.length}}
+      <div class="continuous-variable category">
+        <div class="category-time">
+          <div class="title-circle"><%= image_tag 'icon-clock.png' %></div>
+        </div>
+        <div class="category-fraction">
+          <div class="fraction-listing">
+            <div class="numerator">Episodes</div>
+            <div class="denominator">Total Episodes</div>
+          </div>
+        </div>
+      </div>
+
+      {{#collection cvMeasures item-context=measureContext item-filter=../../measureFilter}}
+        {{view submeasureView}}
+      {{/collection}}
+    {{/if}}
+
+  {{/collection}}
+</div>

@@ -1,0 +1,18 @@
+development:
+  clients:
+    default:
+      database: pophealth-development
+      hosts:
+        - localhost:27017
+test:
+  clients:
+    default:
+      database: pophealth-test
+      hosts:
+        - localhost:27017
+production:
+  clients:
+    default:
+      database: pophealth-production
+      hosts:
+        - localhost:27017

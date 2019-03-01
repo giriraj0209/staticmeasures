@@ -1,0 +1,30 @@
+language: ruby
+rvm:
+  - 2.2.5
+  - 2.3.1
+  - 2.3.7
+before_install:
+  - gem update bundler
+env:
+  - rvmsudo_secure_path=1
+script: bundle exec rake test_unit
+services:
+  - mongodb
+before_install:
+  - gem update bundler
+notifications:
+  email:
+    recipients:
+      - healthcare-ci@googlegroups.com
+    on_failure: change
+bundler_args: --without test develop
+before_script:
+  - npm install -g bower
+  - bower install
+
+branches: 
+  only:
+    - master
+    - develop
+    - improve_patient_load
+    - get_patients

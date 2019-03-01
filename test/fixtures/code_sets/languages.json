@@ -1,0 +1,45 @@
+[{
+  "name": "English",
+  "order": 1,
+  "codes": ["eng"]
+},
+{
+  "name": "Spanish",
+  "order": 2,
+  "codes": ["spa"]
+},
+{
+  "name": "Chinese",
+  "order": 3,
+  "codes": ["chi", "zho"]
+},
+{
+  "name": "French",
+  "order": 4,
+  "codes": ["fre", "fra"]
+},
+{
+  "name": "Sign Language",
+  "order": 5,
+  "codes": ["sgn"]
+},
+{
+  "name": "Other",
+  "order": 6,
+  "codes": ["aar", "abk", "ave", "afr", "aka", "amh", "arg", "ara", "asm", "ava", "aym", "aze", "bak", "bul", "bih", "bis", "bam", "ben", "tib",
+    "bre", "bos", "bur", "cat", "che", "cha", "cos", "cre", "cze", "cze", "chu", "chv", "wel", "dan", "ger", "ger", "div", "dzo", "ewe", "gre",
+    "gre", "epo", "est", "baq", "baq", "per", "per", "ful", "fin", "fij", "fao", "fry", "gle", "gla", "glg", "grn", "guj", "glv", "hau", "heb",
+    "hin", "hmo", "hrv", "hat", "hun", "arm", "arm", "her", "ina", "ind", "ile", "ibo", "iii", "ipk", "ido", "ice", "ita", "iku", "jpn", "jav",
+    "geo", "kon", "kik", "kua", "kaz", "kal", "khm", "kan", "kor", "kau", "kas", "kur", "kom", "cor", "kir", "lat", "ltz", "lug", "lim", "lin",
+    "lao", "lit", "lub", "lav", "mlg", "mah", "mao", "mac", "mal", "mon", "mar", "may", "mlt", "bur", "nau", "nob", "nde", "nep", "ndo", "dut",
+    "dut", "nno", "nor", "nbl", "nav", "nya", "oci", "oji", "orm", "ori", "oss", "pan", "pli", "pol", "pus", "por", "que", "roh", "run", "rum",
+    "rus", "kin", "san", "srd", "snd", "sme", "sag", "sin", "slo", "slv", "smo", "sna", "som", "alb", "srp", "ssw", "sot", "sun", "swe", "swa",
+    "tam", "tel", "tgk", "tha", "tib", "tir", "tuk", "tgl", "tsn", "ton", "tur", "tso", "tat", "twi", "tah", "uig", "ukr", "urd", "uzb", "ven",
+    "vie", "vol", "wln", "wel", "wol", "xho", "yid", "yor", "zha", "zul"]
+},
+{
+  "name": "Unspecified",
+  "order": 7,
+  "codes": ["null"]
+}
+]
